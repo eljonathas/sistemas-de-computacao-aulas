@@ -13,5 +13,4 @@ def revertBinary(binaryString: str):
     return result
 
 
-while True:
-    print(revertBinary(input("Define um valor em binário: ")))
+print(revertBinary(input("Define um valor em binário: ")))
