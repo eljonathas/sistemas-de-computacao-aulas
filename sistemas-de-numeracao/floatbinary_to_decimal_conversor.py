@@ -26,4 +26,4 @@ def convertFloatBinary(value: str):
     return positiveExpos + floatNumber
 
 
-print(convertFloatBinary(input("Digite o valor float em binário: ")))
+print(convertFloatBinary(input("Digite o valor fracionário em binário: ")))

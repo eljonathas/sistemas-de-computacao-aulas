@@ -1,27 +1,22 @@
-from math import log
+import itertools
 
 
-def convertDecimalToBinary(value: str or int):
-    number = int(value)
-    string = ''
+def niveisToBits(value: str):
+    niveisCounter = 0
 
-    while number > 0:
-        rest = int(number % 2)
-        string += str(rest)
-        number = (number - rest) / 2
+    for bits in range(0, 255):
+        if(niveisCounter != value):
+            niveisCounter = 2 ** bits
+            if value % niveisCounter != 0:
+                exit(print("ERROR: Informe apenas potências de 2"))
+        else:
+            print(f"Número de bits: {bits - 1}")
+            print("Estas são as combinações possíveis: ")
 
-    return string[::-1]
+            for i in itertools.product([0, 1], repeat=(bits-1)):
+                print(i)
 
-
-def convertLevelsToBit(levels: int):
-    bitCombinations = []
-    #totalBits = int(levels / log(2))
-
-    for i in range(0, levels):
-        bitCombinations.append(convertDecimalToBinary(i))
-
-    print(bitCombinations)
-    # print(totalBits)
+            break
 
 
-convertLevelsToBit(int(input("Entre com o número de níveis: ")))
+niveisToBits(int(input("Informe o número de níveis: ")))

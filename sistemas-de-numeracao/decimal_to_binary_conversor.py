@@ -10,4 +10,5 @@ def convertDecimalToBinary(value: str or int):
     return string[::-1]
 
 
-print(convertDecimalToBinary(input("Informe o valor em decimal: ")))
+while True:
+    print(convertDecimalToBinary(input("Informe o valor em decimal: ")))
