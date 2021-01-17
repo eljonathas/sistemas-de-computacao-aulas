@@ -23,7 +23,7 @@ def showCellData(e):
 
 def addresSize():
     for i in range(0, len(memo)):
-        if 2 ** i > len(memo):
+        if 2 ** i >= len(memo):
             return i
 
 
@@ -59,37 +59,31 @@ def binToDec(b):
 
 
 def initMemo():
-    cellBits = int(input('Informe a quantidade de bits da célula: '))
-    cells = int(input('Informe a quantidade de células: '))
-    setInitialMemoState(cellBits, cells)
+    setInitialMemoState(8, 16)
     showMemo()
 
 
 initMemo()
 
 while True:
-    print("Informe a opção desejada:")
-    print("1 - Gravação de dados")
-    print("2 - Leitura de dados")
-    print("3 - Visualizar memória")
-    print("4 - Sair")
-    option = int(input(""))
+    print("Digite W para escrever, R para ler, L para listar e qualquer outra teclar para sair.")
+    option = input("").lower()
 
-    if option == 1:
+    if option == 'w':
         address = binToDec(
             input(f'Informe o endereço de {addresSize()} bits: '))
         value = list(
-            input(f'Informe o valor de {len(memo[0])} bits em binário: '))
+            input(f'Informe o dado de {len(memo[0])} bits: '))
         if setCellData(value, address):
             showMemo()
         else:
             print("Um erro ocorreu na gravação dos dados")
-    elif option == 2:
+    elif option == 'r':
         address = binToDec(
             (input(f'Informe o endereço de {addresSize()} bits: ')))
         print(showCellData(address))
-    elif option == 4:
-        exit()
+    elif option == 'l':
+        showMemo()
     else:
-        print("Opção inválida")
+        exit()
     print()
