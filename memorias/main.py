@@ -28,10 +28,11 @@ def addresSize():
 
 
 def setCellData(d, e):
+    oldValue = memo[e]
     if memo[e]:
         if len(d) == len(memo[e]):
             memo[e] = d
-            return True
+            return oldValue
     return False
 
 
@@ -60,7 +61,6 @@ def binToDec(b):
 
 def initMemo():
     setInitialMemoState(8, 16)
-    showMemo()
 
 
 initMemo()
@@ -68,14 +68,13 @@ initMemo()
 while True:
     print("Digite W para escrever, R para ler, L para listar e qualquer outra teclar para sair.")
     option = input("").lower()
-
     if option == 'w':
         address = binToDec(
             input(f'Informe o endereço de {addresSize()} bits: '))
-        value = list(
-            input(f'Informe o dado de {len(memo[0])} bits: '))
-        if setCellData(value, address):
-            showMemo()
+        value = input(f'Informe o dado de {len(memo[0])} bits: ')
+        oldValue = setCellData(list(value), address)
+        if oldValue:
+            print(f'{"".join(str(e) for e in oldValue)} -> {value}')
         else:
             print("Um erro ocorreu na gravação dos dados")
     elif option == 'r':
